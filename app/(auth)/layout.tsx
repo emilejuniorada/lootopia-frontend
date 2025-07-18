@@ -8,8 +8,8 @@ interface AuthLayoutProps {
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
     return (
-        <div className="flex flex-col min-h-screen px-28">
-            <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md">
+        <div className="flex flex-col min-h-screen">
+            <header className="bg-white/95 backdrop-blur-md">
                 <div className="container mx-auto px-4 py-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
