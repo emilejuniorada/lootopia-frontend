@@ -16,7 +16,7 @@ const Available = () => {
   }, [status]);
   
   const visibleHunts = hunts?.filter(
-    (hunt: Hunt) => hunt.creator !== session?.user?.id
+    (hunt: Hunt) => hunt.creator !== session?.user?.id && hunt.isActive
   );
 
   return (
