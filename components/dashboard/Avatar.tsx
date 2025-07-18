@@ -15,7 +15,7 @@ const Avatar: React.FC = () => {
                 {session?.user?.nickname}
                 <br />
             </div>
-            <Image src={"/user/avatar.jpg"} alt="logo" width={40} height={40} />
+            <Image src={"/user/avatar.png"} alt="logo" width={40} height={40} />
         </div>
     );
 };
