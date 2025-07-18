@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
+import L from 'leaflet';
 import 'leaflet-draw';
 import { Map } from '@/stores/quest';
 
-declare const L: any; // --> Works
-import 'leaflet-draw';
 const DrawControl = ({ setMap }: { setMap?: (map: Map) => void }) => {
     const map = useMap();
 
@@ -19,7 +18,7 @@ const DrawControl = ({ setMap }: { setMap?: (map: Map) => void }) => {
                 circle: false,
                 marker: false,
                 circlemarker: false,
-                rectangle: true,
+                rectangle: {},
             },
             edit: {
                 featureGroup: drawnItems,
