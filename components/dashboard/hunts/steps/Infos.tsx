@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/alert-dialog"
 
 const Infos = () => {
-  const { title, description, isPublic, duration, participantsLimit, map, setTitle, setDescription, setIsPublic, setDuration, setEndDate, setParticipantsLimit, setWorld, setMap, setValidation } = useFormStore();
+  const { title, description, isPublic, duration, participantsLimit, endDate, map, setTitle, setDescription, setIsPublic, setDuration, setEndDate, setParticipantsLimit, setWorld, setMap, setValidation } = useFormStore();
   const QuestMap = React.useMemo(() => dynamic(
     () => import('@/components/dashboard/hunts/maps/QuestMap'),
     {
@@ -34,6 +34,7 @@ const Infos = () => {
     if (!title) return false;
     if (!description) return false;
     if (!map) return false;
+    if (!endDate) return false;
     return true;
   };
 
@@ -44,8 +45,8 @@ const Infos = () => {
   return (
     <div className="space-y-6 w-full">
       <div className="flex items-center space-x-2">
-        <Switch id="isPublic" checked={isPublic} onCheckedChange={e => setIsPublic(!isPublic)} />
-        <Label htmlFor="isPublic">Mode {isPublic ? "Privé" : "Public"}</Label>
+        <Switch id="isPublic" checked={isPublic} onCheckedChange={e => setIsPublic(!isPublic)} disabled/>
+        <Label htmlFor="isPublic" className="cursor-not-allowed text-gray-400">Mode {isPublic ? "Privé" : "Public"}</Label>
       </div>
       <div className="w-full md:flex items-center gap-4 md:space-y-0 space-y-2">
         <div className="md:w-1/2 space-y-2">
@@ -73,8 +74,8 @@ const Infos = () => {
             <Label htmlFor="cartographic">Cartographique</Label>
           </div>
           <div className="flex items-center gap-3">
-            <RadioGroupItem value="Reel" id="reel" />
-            <Label htmlFor="reel">Réel</Label>
+            <RadioGroupItem value="Reel" id="reel" disabled/>
+            <Label htmlFor="reel" className="cursor-not-allowed text-gray-400">Réel</Label>
           </div>
         </RadioGroup>
       </div>
@@ -109,7 +110,7 @@ const Infos = () => {
           <span className="text-gray-500 text-xs">Laissez à 0 pour un nombre illimité de participants</span>
         </div>
         <div className="md:w-1/2 space-y-2">
-          <Label htmlFor="endDate">Date de fin</Label>
+          <Label htmlFor="endDate">Date de fin*</Label>
           <Datepicker setDateValue={setEndDate}/>
         </div>
       </div>

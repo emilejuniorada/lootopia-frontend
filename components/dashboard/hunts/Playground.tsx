@@ -66,9 +66,9 @@ const Playground = ({ id }: { id: string }) => {
             setDigMode(false)
             await loadData()
             const user = await fetchUser("/api/user", session?.user.id)
-            update({ user:{
+            await update({ user:{
                 crowns: user!.crowns
-            } })
+            }})
         }
     };
     const digCache = () => {
@@ -89,7 +89,6 @@ const Playground = ({ id }: { id: string }) => {
     }
 
     React.useEffect(() => {
-        console.log("loading here")
         if (status === "authenticated") loadData();
     }, [status]);
 
@@ -108,7 +107,8 @@ const Playground = ({ id }: { id: string }) => {
                 <div className="flex flex-col items-center gap-3 w-1/3">
                     <div className="flex items-baseline gap-4">
                         <div className="text-xl font-semibold">{hunt?.title}</div>
-                        <div className="text-xs text-gray-400 flex gap-1">{hunt.huntParticipants.length} <User height={14} width={14} />/ {hunt?.participantsLimit}</div>
+                        {hunt.participantsLimit! > 0 && <div className="text-xs text-gray-400 flex gap-1">{hunt?.huntParticipants?.length} <User height={14} width={14} />/ {hunt?.participantsLimit}</div>}
+                        {hunt.participantsLimit! <= 0 && <div className="text-xs text-gray-400 flex gap-1"><User height={14} width={14} /> Illimité</div>}
                     </div>
                     <div className="text-md text-center">{hunt?.description}</div>
                     {hunt.endDate && (<div className="text-sm">Se termine le {new Date(hunt.endDate).toLocaleDateString("fr-FR")} à 00h</div>)}

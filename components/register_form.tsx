@@ -93,7 +93,7 @@ export function RegisterForm({ className, ...props }: React.ComponentPropsWithou
                                 <div className="grid gap-2">
                                     <Label>Type de compte</Label>
                                     <div className="flex gap-4">
-                                        <label className="flex items-center gap-2">
+                                        <label className="flex items-center gap-2 w-1/2">
                                             <input
                                                 type="radio"
                                                 value="false"
@@ -102,7 +102,7 @@ export function RegisterForm({ className, ...props }: React.ComponentPropsWithou
                                             />
                                             Compte Personnel
                                         </label>
-                                        <label className="flex items-center gap-2 cursor-not-allowed text-gray-400cursor-not-allowed text-gray-400">
+                                        <label className="flex items-center gap-2 cursor-not-allowed text-gray-400">
                                             <input
                                                 type="radio"
                                                 value="true"

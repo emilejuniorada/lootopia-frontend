@@ -1,7 +1,8 @@
 import React from "react";
+import UserProfile from "@/components/dashboard/hunts/forms/UserProfile";
 
 const Page = () => {
-  return <div>Page</div>;
+  return <UserProfile/>;
 };
 
 export default Page;

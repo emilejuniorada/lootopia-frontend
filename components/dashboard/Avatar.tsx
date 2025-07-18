@@ -14,8 +14,11 @@ const Avatar: React.FC = () => {
             <div className="text-black font-bold text-right break-words w-full">
                 {session?.user?.nickname}
                 <br />
+                <span className="text-xs break-words w-full block">
+                    {session?.user?.email}
+                </span>
             </div>
-            <Image src={"/avatar.png"} alt="logo" width={40} height={40} />
+            <Image src={"/user/avatar.jpg"} alt="logo" width={40} height={40} />
         </div>
     );
 };

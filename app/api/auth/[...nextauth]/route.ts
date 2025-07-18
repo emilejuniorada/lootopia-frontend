@@ -37,8 +37,10 @@ const handler = NextAuth({
       if (user) {
         token = { ...token, ...user };
       }
-      if (trigger === 'update' && session?.user?.crowns != null) {
-        token.crowns = session.user.crowns;
+      if (trigger === "update") {
+        if (session?.user?.crowns) token.crowns = session.user.niccrownskname;
+        if (session?.user?.email) token.email = session.user.email;
+        if (session?.user?.nickname) token.nickname = session.user.nickname;
       }
       return token;
     },

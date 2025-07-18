@@ -1,6 +1,6 @@
 "use client"
 import * as React from "react"
-import { Minus, Plus } from "lucide-react"
+import { Cog, Minus, Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
     Drawer,
@@ -46,6 +46,11 @@ const MobileMenu = () => {
                   <Link href='/dashboard/events' className="block">
                       <Button type="button" className="bg-black w-full text-white transition-all duration-300 ease-in-out hover:bg-primary hover:text-white hover:scale-90" size={"lg"}>
                           <Calendar />
+                      </Button>
+                  </Link>
+                  <Link href='/dashboard/profile' className="block">
+                      <Button type="button" className="bg-black w-full text-white transition-all duration-300 ease-in-out hover:bg-primary hover:text-white hover:scale-90" size={"lg"}>
+                          <Cog />
                       </Button>
                   </Link>
                   <Button type="button" className="w-full bg-black text-white " size={"lg"} onClick={(e) => signOut({ callbackUrl: "/login" })}>

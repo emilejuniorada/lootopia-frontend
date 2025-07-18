@@ -64,7 +64,7 @@ const Menu = () => {
         <div className="absolute bottom-0 flex flex-col gap-4">
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <Link href='/dashboard/events' className="block">
+                    <Link href='/dashboard/profile' className="block">
                         <Button type="button" className="bg-black w-full text-white transition-all duration-300 ease-in-out hover:bg-primary hover:text-white hover:scale-90" size={"lg"}>
                             <Cog />
                         </Button>

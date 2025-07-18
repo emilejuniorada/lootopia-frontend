@@ -48,7 +48,7 @@ const Create = () => {
     if (success){
       toast.success("Chasse enregistrée avec succès!")
       state.resetForm()
-      router.refresh()
+      router.push("/dashboard")
     }
 
   };
