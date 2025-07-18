@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import 'leaflet/dist/leaflet.css';
+@import 'leaflet-draw/dist/leaflet.draw.css';
+@theme {
+  --color-primary: #A8631F;
+  --color-secondary: #26607E;
+  --color-tertiary: #EDAC26;
+  --color-gray: #EEEEEE;
+}
