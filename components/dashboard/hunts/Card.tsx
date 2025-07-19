@@ -33,6 +33,7 @@ const HuntCard = ({hunt}:{ hunt: Hunt}) => {
         <p className="flex items-baseline gap-4 text-sm">Récompense : <span className="text-tertiary flex gap-2 font-bold">{hunt.reward} <Crown height={18} width={18}/></span></p>
         {hunt.endDate && (<p className="text-sm">Se termine le {new Date(hunt.endDate).toLocaleDateString("fr-FR")} à 00h</p>)}
         <p className="text-sm">Caches à trouver : {hunt.caches.length}</p>
+        <div className="text-sm font-semibold">Crée par {hunt?.userNickName}</div>
       </CardContent>
     </Card>
   </div>;

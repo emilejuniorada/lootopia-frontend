@@ -46,6 +46,7 @@ const SinglePage = ({ id }: { id: string }) => {
                     <div className="text-md text-center">{hunt?.description}</div>
                     {hunt.endDate && (<div className="text-sm">Se termine le {new Date(hunt?.endDate).toLocaleDateString("fr-FR")} à 00h</div>)}
                     <div className="flex items-baseline gap-2 text-sm">Récompense : <span className="text-tertiary flex gap-2 font-bold">{hunt?.reward} <Crown height={18} width={18} /></span></div>
+                    <div className="text-cm font-semibold">Crée par {hunt?.userNickName}</div>
                 </div>
                 <div className="flex flex-col items-center gap-3 md:w-1/3">
                     {hunt?.participantsLimit! > 0 ? (hunt?.huntParticipants?.length == hunt?.participantsLimit!) && (

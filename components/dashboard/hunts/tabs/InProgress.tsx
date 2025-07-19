@@ -28,12 +28,12 @@ const InProgress = () => {
         <div className="w-8 h-8 mx-auto">
           <span className="animate-spin border-4 border-transparent border-l-black rounded-full w-10 h-10 inline-block align-middle m-auto mb-10 dark:border-l-dark"></span>
         </div>
-      ) : inProgressHunts && inProgressHunts.length > 0 ? (
-        inProgressHunts.map((hunt: Hunt) => (
-          <div className="md:grid grid-cols-4 gap-2 py-4 w-full" key={hunt.id}>
-            <HuntCard hunt={hunt} />
-          </div>
-        ))
+      ) : inProgressHunts && inProgressHunts.length > 0 ? (<div className="md:grid grid-cols-4 gap-4 py-4 w-full">
+        {inProgressHunts.map((hunt: Hunt) => (
+        
+          <HuntCard hunt={hunt} key={hunt.id} />
+
+        ))}</div>
       ) : (
         <div className="text-center text-sm">Aucune chasse en cours.</div>
       )}

@@ -81,7 +81,7 @@ const useFetch = <T = any>(
     setLoading(true);
     setError(null);
     try {
-      await axios.put(`${backendUrl}${url}/${id}`, data, getAuthConfig());
+      await axios.put(`${backendUrl}${url}`, data, getAuthConfig());
       return true;
     } catch (error: any) {
       setError(

@@ -9,12 +9,12 @@ import { Separator } from '@/components/ui/separator';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { toast } from 'sonner';
 import { Mail, User, Key, Download, Trash2, Save, Loader2 } from 'lucide-react';
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import useFetch from "@/services/useFetch";
 
 const UserProfile = () => {
     const { data: session, status, update } = useSession();
-    const { updateData } = useFetch();
+    const { updateData, createData, getData, deleteData } = useFetch();
     const [email, setEmail] = useState("");
     const [nickname, setNickname] = useState("");
     const [password, setPassword] = useState({ currentPassword: '', newPassword: '', confirmPassword: '', isLoading: false });
@@ -24,19 +24,16 @@ const UserProfile = () => {
 
     const handleEmailChange = async (e: React.FormEvent) => {
         e.preventDefault()
-        /* const success = await updateData("/api/users/me/email", "", {
+        const success = await createData("/api/email-verification/change-email", {
             userId: session?.user.id,
-            email: email
+            newEmail: email
         })
         if(success){
-            toast.success("Email mis à jour avec succès !");
-            await update({
-                user: {
-                    email: email
-                }
-            })
-        } */
-        console.log("Changing email")
+            toast.success("Email mis à jour avec succès !", { description: "Un mail de confirmation vous a été envoyé à votre nouvelle adresse email." });
+            setTimeout(() => {
+                signOut({ callbackUrl: "/login" });
+            }, 2000);
+        }
     };
 
     const handleNicknameChange = async (e: React.FormEvent) => {
@@ -56,20 +53,24 @@ const UserProfile = () => {
     };
 
     const handlePasswordChange = async (e: React.FormEvent) => {
-        const success = await updateData("/api/users/me/email", "", {
+        e.preventDefault()
+        const success = await updateData("/api/users/me/password", "", {
             userId: session?.user.id,
             password: password.currentPassword,
             new_password: password.newPassword,
             confirm_password: password.confirmPassword
         })
         if (success) {
-            toast.success("Mot de passe mis à jour avec succès !");
+            toast.success("Mot de passe mis à jour avec succès !", { description: "Vous allez être déconnecté." });
+            setTimeout(() => {
+                signOut({ callbackUrl: "/login" });
+            }, 2000);
         }
     };
 
     const handleDataExport = async () => {
         setExportLoading(true);
-        const userData = await new Promise(resolve => setTimeout(resolve, 2000)); // API call here
+        const userData = await getData("/api/users/me/export", session?.user.id); // API call here
         
         const blob = new Blob([JSON.stringify(userData, null, 2)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
@@ -90,9 +91,12 @@ const UserProfile = () => {
             return;
         }
         setDeleteLoading(true);
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await deleteData("/api/users/me/delete", session?.user.id);
         setDeleteLoading(false);
-        toast.success("Compte programmé pour suppression");
+        toast.success("Votre compte a été supprimé !", { description: "Vous allez être déconnecté." });
+        setTimeout(() => {
+            signOut({ callbackUrl: "/login" });
+        }, 3000);
         setDeleteConfirmation('');
     };
 
@@ -204,7 +208,7 @@ const UserProfile = () => {
                                     value={password.newPassword}
                                     autoComplete="new-password"
                                     onChange={(e) => setPassword(prev => ({ ...prev, newPassword: e.target.value }))}
-                                    required minLength={8}
+                                    required
                                 />
                             </div>
                             <div className="space-y-2">
@@ -215,7 +219,7 @@ const UserProfile = () => {
                                     value={password.confirmPassword}
                                     autoComplete="new-password"
                                     onChange={(e) => setPassword(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                                    required minLength={8}
+                                    required
                                 />
                             </div>
                             <Button type="submit" disabled={
