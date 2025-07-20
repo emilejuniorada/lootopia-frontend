@@ -28,7 +28,7 @@ const Caches = () => {
       id: caches.length + 1,
       latitude: position?.lat,
       longitude: position?.lng,
-      hint,
+      hint: hint,
       isRequired: isRequired,
       keyType: keyType as 'cache' | 'passphrase',
       passphrase: passphrase,
@@ -77,9 +77,9 @@ const Caches = () => {
           {cache.keyType === 'passphrase' && (<div>
             <span className="font-bold">Passphrase :</span> {cache.passphrase}
           </div>)}
-          {cache.keyType === 'cache' && (<div>
+          <div>
             <span className="font-bold">Cache :</span> {cache.latitude}, {cache.longitude}
-          </div>)}
+          </div>
         </div>
       ))}
     </div>

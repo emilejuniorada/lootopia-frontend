@@ -16,12 +16,23 @@ const InProgress = () => {
     }
   }, [status]);
 
-  const inProgressHunts = hunts?.filter((hunt: Hunt) =>
-    hunt.huntParticipants?.some(
-      (participant: any) => participant.userId === session?.user?.id
-    )
-  );
+  const inProgressHunts = hunts?.filter((hunt: Hunt) => {
+    if (!hunt.huntParticipants || !Array.isArray(hunt.huntParticipants)) return false;
 
+    return hunt.huntParticipants.some((participant: any) => {
+      console.log("Comparing:", {
+        huntId: hunt.id,
+        participantUserId: participant?.userId,
+        sessionUserId: session?.user?.id,
+        completed: participant?.completed,
+      });
+
+      return (
+        participant?.userId === session?.user?.id &&
+        participant?.completed === false
+      );
+    });
+  });
   return (
     <div className="w-full mt-4">
       {loading ? (
