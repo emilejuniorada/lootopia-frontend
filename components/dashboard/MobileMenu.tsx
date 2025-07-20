@@ -38,11 +38,6 @@ const MobileMenu = () => {
                           <Compass />
                       </Button>
                   </Link>
-                  <Link href='/dashboard/rankings'>
-                      <Button type="button" className="bg-black w-full text-white transition-all duration-300 ease-in-out hover:bg-primary hover:text-white hover:scale-90" size={"lg"}>
-                          <Medal />
-                      </Button>
-                  </Link>
                   <Link href='/dashboard/events' className="block">
                       <Button type="button" className="bg-black w-full text-white transition-all duration-300 ease-in-out hover:bg-primary hover:text-white hover:scale-90" size={"lg"}>
                           <Calendar />

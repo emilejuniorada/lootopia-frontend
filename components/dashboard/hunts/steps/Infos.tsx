@@ -34,7 +34,6 @@ const Infos = () => {
     if (!title) return false;
     if (!description) return false;
     if (!map) return false;
-    if (!endDate) return false;
     return true;
   };
 
