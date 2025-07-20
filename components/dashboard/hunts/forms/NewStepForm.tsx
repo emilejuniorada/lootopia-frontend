@@ -86,13 +86,6 @@ const NewStepForm = ({ hint, keyType, passphrase, position, isRequired = false, 
                 </RadioGroup>
             </div>
         </div>
-        {keyType === "cache" && <div className="space-y-2 h-96">
-            <div>
-                <Label htmlFor="hint">Carte</Label>
-                <span className="text-xs">Cliquez à l'endroit souhaité dans le rectangle représentant la zone de votre chasse pour spécifier le point où se trouve la cache.</span>
-            </div>
-            <QuestMap markable={true} setPosition={setPosition} markerPosition={position} map={map} />
-        </div>}
         {keyType === "passphrase" && <div className="space-y-2">
             <Label htmlFor="passphraseInput">Passphrase</Label>
             <Input
@@ -101,6 +94,13 @@ const NewStepForm = ({ hint, keyType, passphrase, position, isRequired = false, 
                 onChange={e => setPassphrase(e.target.value)}
             />
         </div>}
+        <div className="space-y-2 h-96">
+            <div>
+                <Label htmlFor="hint">Carte</Label>
+                <span className="text-xs">Cliquez à l'endroit souhaité dans le rectangle représentant la zone de votre chasse pour spécifier le point où se trouve la cache.</span>
+            </div>
+            <QuestMap markable={true} setPosition={setPosition} markerPosition={position} map={map} />
+        </div>
     </div>;
 };
 
