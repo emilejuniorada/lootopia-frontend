@@ -38,7 +38,7 @@ const UserProfile = () => {
 
     const handleNicknameChange = async (e: React.FormEvent) => {
         e.preventDefault()
-        const success = await updateData("/api/users" + session?.user.id, session?.user.id, {
+        const success = await updateData("/api/users/" + session?.user.id, session?.user.id, {
             userId: session?.user.id,
             nickname: nickname
         })
